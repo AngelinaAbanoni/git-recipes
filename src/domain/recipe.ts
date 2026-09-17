@@ -3,6 +3,7 @@ export class Recipe {
   _category!: string;
   _description!: string;
   _preparationTime?: number;
+  _estado!: string;
 
   constructor(aName: string) {
     this.name = aName;
@@ -44,6 +45,18 @@ export class Recipe {
     this._category = trimmedCat;
   }
 
+  get estado(): string | undefined {
+    return this._estado;
+  }
+
+  set estado(aEstado: string) {
+    const trimmedEst = aEstado.trim();
+    if(trimmedEst.length === 0){
+      throw new Error("EL ESTADOOO no puede no tener nadaaaa.");
+    }
+    this._category = trimmedEst;
+  }
+
   get preparationTime(): number | undefined {
     return this._preparationTime;
   }
@@ -56,6 +69,9 @@ export class Recipe {
   }
 
   toString(): string {
-    return `Receta: ${this.name} - categoría: ${this.category} - descripción: ${this.description} - tiempo de preparación: ${this.preparationTime} minutos`;
+    return `Receta: ${this.name} - categoría: ${this.category} 
+    - descripción: ${this.description} 
+    - tiempo de preparación: ${this.preparationTime} minutos
+    -estadoooo: ${this.estado}`;
   }
 }
