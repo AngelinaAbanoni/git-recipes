@@ -9,17 +9,26 @@ const inpCategory = document.getElementById(
   "inp-category",
 ) as HTMLSelectElement | null;
 
+const inpEstado = document.getElementById(
+  "inp-estado",
+) as HTMLSelectElement | null;
+
 const mainRecipeList = new RecipeList();
 
-if (btnAdd && inpName && inpCategory) {
+if (btnAdd && inpName && inpCategory && inpEstado) {
   btnAdd.addEventListener("click", () => {
     const recipesErrorContainer = document.getElementById("add-recipes-error");
     const recipesError = document.getElementById("add-recipes-error-msg");
     try {
       const newRecipe = new Recipe(inpName.value);
       newRecipe.category = inpCategory.value;
+
+      newRecipe.estado = inpEstado.value;
+
       mainRecipeList.add(newRecipe);
-      clearInputs(inpName, inpCategory);
+
+      clearInputs(inpName, inpCategory, inpEstado);
+
       recipesErrorContainer?.classList.add("d-none");
       loadRecipeList(newRecipe);
       appendAlert(`${newRecipe.name} agregada correctamente!`, "success");
@@ -39,9 +48,11 @@ if (btnAdd && inpName && inpCategory) {
 function clearInputs(
   inpNameEl: HTMLInputElement,
   inpCategoryEl: HTMLSelectElement,
+  inpEstadoEl: HTMLSelectElement,
 ) {
   inpNameEl.value = "";
   inpCategoryEl.selectedIndex = 0;
+  inpEstadoEl.selectedIndex = 0;
 }
 
 function loadRecipeList(newRecipe: Recipe) {

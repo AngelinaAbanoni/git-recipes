@@ -1,6 +1,7 @@
 export class Recipe {
   _name!: string;
   _category?: string;
+  _estado!: string;
 
   constructor(aName: string) {
     this.name = aName;
@@ -24,6 +25,18 @@ export class Recipe {
 
   set category(aCategory: string) {
     this._category = aCategory;
+  }
+
+  get estado(): string | undefined {
+    return this._estado;
+  }
+
+  set estado(aEstado: string) {
+    const trimmed = aEstado.trim();
+    if (trimmed.length === 0) {
+      throw new Error("El estado de la receta no puede ser vacío.");
+    }
+    this._estado = trimmed;
   }
 
   toString(): string {
