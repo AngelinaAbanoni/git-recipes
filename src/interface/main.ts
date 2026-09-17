@@ -13,9 +13,13 @@ const inpEstado = document.getElementById(
   "inp-estado",
 ) as HTMLSelectElement | null;
 
+const inpAsignado = document.getElementById(
+  "inp-asignado",
+) as HTMLInputElement | null;
+
 const mainRecipeList = new RecipeList();
 
-if (btnAdd && inpName && inpCategory && inpEstado) {
+if (btnAdd && inpName && inpCategory && inpAsignado && inpEstado) {
   btnAdd.addEventListener("click", () => {
     const recipesErrorContainer = document.getElementById("add-recipes-error");
     const recipesError = document.getElementById("add-recipes-error-msg");
@@ -24,10 +28,10 @@ if (btnAdd && inpName && inpCategory && inpEstado) {
       newRecipe.category = inpCategory.value;
 
       newRecipe.estado = inpEstado.value;
-
+      newRecipe.asignado = inpAsignado.value;
       mainRecipeList.add(newRecipe);
 
-      clearInputs(inpName, inpCategory, inpEstado);
+      clearInputs(inpName, inpCategory, inpEstado, inpAsignado);
 
       recipesErrorContainer?.classList.add("d-none");
       loadRecipeList(newRecipe);
@@ -48,10 +52,12 @@ if (btnAdd && inpName && inpCategory && inpEstado) {
 function clearInputs(
   inpNameEl: HTMLInputElement,
   inpCategoryEl: HTMLSelectElement,
+  inpAsignadoEl: HTMLInputElement,
   inpEstadoEl: HTMLSelectElement,
 ) {
   inpNameEl.value = "";
   inpCategoryEl.selectedIndex = 0;
+  inpAsignadoEl.value = "";
   inpEstadoEl.selectedIndex = 0;
 }
 

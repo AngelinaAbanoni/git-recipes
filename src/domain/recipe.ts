@@ -2,6 +2,7 @@ export class Recipe {
   _name!: string;
   _category?: string;
   _estado!: string;
+  _asignado?: string;
 
   constructor(aName: string) {
     this.name = aName;
@@ -17,6 +18,14 @@ export class Recipe {
       throw new Error("El nombre de la receta no puede ser vacío.");
     }
     this._name = trimmed;
+  }
+
+  get asignado(): string | undefined{
+    return this._asignado;
+  }
+
+  set asignado(aAsignado: string) {
+    this._asignado = aAsignado;
   }
 
   get category(): string | undefined {
@@ -40,6 +49,6 @@ export class Recipe {
   }
 
   toString(): string {
-    return `Receta: ${this.name} - categoría: ${this.category} - Estado: ${this.estado} `;
+    return `Receta: ${this.name} - categoría: ${this.category} - Estado: ${this.estado} - Asignado: ${this.asignado}`;
   }
 }
