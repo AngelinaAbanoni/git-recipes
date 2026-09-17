@@ -5,35 +5,21 @@ const btnAdd = document.getElementById("btn-add") as HTMLButtonElement | null;
 const inpName = document.getElementById(
   "inp-name",
 ) as HTMLInputElement | null;
-const inpDescription = document.getElementById(
-  "inp-description",
-) as HTMLInputElement | null;
 const inpCategory = document.getElementById(
   "inp-category",
 ) as HTMLSelectElement | null;
-const inpPreparationTime = document.getElementById(
-  "inp-preparation-time",
-) as HTMLInputElement | null;
-const inpEstado = document.getElementById(
-  "inp-estado",
-)
 
 const mainRecipeList = new RecipeList();
 
-if (btnAdd && inpName && inpCategory && inpDescription && inpPreparationTime && inpEstado) {
+if (btnAdd && inpName && inpCategory) {
   btnAdd.addEventListener("click", () => {
     const recipesErrorContainer = document.getElementById("add-recipes-error");
     const recipesError = document.getElementById("add-recipes-error-msg");
     try {
       const newRecipe = new Recipe(inpName.value);
-      newRecipe.description = inpDescription.value;
       newRecipe.category = inpCategory.value;
-      newRecipe.preparationTime = parseInt(inpPreparationTime.value);
-
-      newRecipe._estado = inpEstado.value;
-
       mainRecipeList.add(newRecipe);
-      clearInputs(inpName, inpDescription, inpCategory, inpPreparationTime, inpEstado);
+      clearInputs(inpName, inpCategory);
       recipesErrorContainer?.classList.add("d-none");
       loadRecipeList(newRecipe);
       appendAlert(`${newRecipe.name} agregada correctamente!`, "success");
@@ -52,16 +38,10 @@ if (btnAdd && inpName && inpCategory && inpDescription && inpPreparationTime && 
 
 function clearInputs(
   inpNameEl: HTMLInputElement,
-  inpDescriptionEl: HTMLInputElement,
   inpCategoryEl: HTMLSelectElement,
-  inpPreparationTimeEl: HTMLInputElement,
-  inpEstadoEl: HTMLSelectElement,
 ) {
   inpNameEl.value = "";
-  inpDescriptionEl.value = "";
   inpCategoryEl.selectedIndex = 0;
-  inpPreparationTimeEl.value = "";
-  inpEstadoEl.selectedIndex = 0;
 }
 
 function loadRecipeList(newRecipe: Recipe) {
