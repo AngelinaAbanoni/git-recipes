@@ -17,8 +17,7 @@ const inpPreparationTime = document.getElementById(
 
 const mainRecipeList = new RecipeList();
 
-if (btnAdd && inpName && inpDescription && inpCategory) 
-if (btnAdd && inpName && inpCategory && inpPreparationTime) {
+if (btnAdd && inpName && inpCategory && inpDescription && inpPreparationTime) {
   btnAdd.addEventListener("click", () => {
     const recipesErrorContainer = document.getElementById("add-recipes-error");
     const recipesError = document.getElementById("add-recipes-error-msg");

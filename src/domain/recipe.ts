@@ -1,7 +1,7 @@
 export class Recipe {
   _name!: string;
-  _category?: string;
-  _description?: string;
+  _category!: string;
+  _description!: string;
   _preparationTime?: number;
 
   constructor(aName: string) {
@@ -25,7 +25,11 @@ export class Recipe {
   }
 
   set description(aDescription: string) {
-    this._description = aDescription;
+    const trimmedDes = aDescription.trim();
+    if(trimmedDes.length === 0){
+      throw new Error("La descripcioooon no puede no tener nadaaaa.");
+    }
+    this._description = trimmedDes;
   }
 
   get category(): string | undefined {
@@ -33,7 +37,11 @@ export class Recipe {
   }
 
   set category(aCategory: string) {
-    this._category = aCategory;
+    const trimmedCat = aCategory.trim();
+    if(trimmedCat.length === 0){
+      throw new Error("La categoria no puede no tener nadaaaa.");
+    }
+    this._category = trimmedCat;
   }
 
   get preparationTime(): number | undefined {
