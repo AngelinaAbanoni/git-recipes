@@ -31,7 +31,7 @@ if (btnAdd && inpName && inpCategory && inpAsignado && inpEstado) {
       newRecipe.asignado = inpAsignado.value;
       mainRecipeList.add(newRecipe);
 
-      clearInputs(inpName, inpCategory, inpEstado, inpAsignado);
+      clearInputs(inpName, inpCategory, inpAsignado, inpEstado);
 
       recipesErrorContainer?.classList.add("d-none");
       loadRecipeList(newRecipe);
